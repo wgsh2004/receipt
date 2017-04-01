@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wgsh.receipt.mapper.CommodityMapper">
+	<resultMap id="queryResultMap" type="com.wgsh.receipt.entity.Commodity" >
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="UNIT_PRICE" property="unitPrice" jdbcType="DOUBLE" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<insert id="insert" parameterType="com.wgsh.receipt.entity.Commodity"
+		useGeneratedKeys="true" keyColumn="ID" keyProperty="id">
+		insert into
+			T_COMMODITY(NAME,UNIT_PRICE,REMARK)
+		values(#{name},#{unitPrice},remark)
+	</insert>
+	
+	<update id="update" parameterType="com.wgsh.receipt.entity.Commodity">
+		update T_COMMODITY
+		<set>
+			NAME=#{name},
+			UNIT_PRICE=#{unitPrice},
+			REMARK=#{remark}
+		</set>
+		<where> ID=#{id}</where>
+	</update>
+
+	<update id="delete" parameterType="java.lang.Integer">
+		DELETE FROM T_COMMODITY WHERE ID=#{id}
+	</update>
+	
+	<select id="select" parameterType="java.util.HashMap"
+		resultMap="queryResultMap">
+		SELECT ID,NAME,UNIT_PRICE,REMARK
+		FROM T_COMMODITY
+		<where>
+			<if test="name !=null and name != '' ">NAME like(% #{name,jdbcType=VARCHAR} )</if>
+		</where>
+	</select>
+</mapper>
