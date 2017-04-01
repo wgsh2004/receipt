@@ -7,25 +7,25 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wgsh.receipt.business.ICommodityBusiness;
-import com.wgsh.receipt.entity.Commodity;
-import com.wgsh.receipt.mapper.CommodityMapper;
+import com.wgsh.receipt.business.ITemplateBusiness;
+import com.wgsh.receipt.entity.Template;
+import com.wgsh.receipt.mapper.TemplateMapper;
 
 @Service
-public class CommodityBusinessImpl implements ICommodityBusiness {
+public class TemplateBusinessImpl implements ITemplateBusiness {
 	
-	public static final Logger logger = LoggerFactory.getLogger(CommodityBusinessImpl.class);
+	public static final Logger logger = LoggerFactory.getLogger(TemplateBusinessImpl.class);
 
 	@Autowired
-	private CommodityMapper mapper;
+	private TemplateMapper mapper;
 
 	@Override
-	public int insert(Commodity entity) {
+	public int insert(Template entity) {
 		return mapper.insert(entity);
 	}
 
 	@Override
-	public int update(Commodity entity) {
+	public int update(Template entity) {
 		return mapper.update(entity);
 	}
 
@@ -35,7 +35,7 @@ public class CommodityBusinessImpl implements ICommodityBusiness {
 	}
 
 	@Override
-	public List<Commodity> select(String parameter, int start, int limit) {
+	public List<Template> select(String parameter, int start, int limit) {
 		/*Map<String, Object> map = new HashMap<>();
 		map.put("parameter", parameter);
 		map.put("start", start);

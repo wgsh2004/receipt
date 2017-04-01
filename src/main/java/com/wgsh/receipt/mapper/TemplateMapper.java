@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.wgsh.receipt.entity.Commodity;
+import com.wgsh.receipt.entity.Template;
 
-public interface CommodityMapper {
+public interface TemplateMapper {
 
-	public int insert(Commodity entity);
+	public int insert(Template entity);
 
-	public int update(Commodity entity);
+	public int update(Template entity);
 
 	public int delete(int id);
 
-	public List<Commodity> select(@Param(value ="queryParam")String queryParam ,
+	public List<Template> select(@Param(value ="queryParam")String queryParam ,
 			@Param(value ="start" )int start ,
 			@Param(value ="limit")int limit);
 	

@@ -50,21 +50,6 @@ public class CommodityController {
 		}
 	}
 	
-	@RequestMapping(value="/commodity" ,method={RequestMethod.PUT})
-	@ResponseBody
-	public MessageResult update(@Valid @RequestBody Commodity entity, BindingResult result) {	
-		if(result.hasErrors()){
-			return new MessageResult(false, "修改商品信息出错",result.getAllErrors());
-		}else{
-			int id = business.insert(entity);
-			if(id>0){
-				return new MessageResult(false, "修改商品信息成功",id);
-			}else{
-				return new MessageResult(false, "修改商品信息失败");
-			}
-		}
-	}
-	
 	@RequestMapping(value="/commodity/{id}" ,method={RequestMethod.DELETE})
 	@ResponseBody
 	public MessageResult del(@PathVariable(name="id") int id) {	
@@ -80,8 +65,8 @@ public class CommodityController {
 	@RequestMapping(value="/commodity" ,method={RequestMethod.GET})
 	@ResponseBody
 	public MessageResult select(@RequestParam(name="queryParam") String queryParam,
-			@RequestParam(name="start",defaultValue="0")Integer start,
-			@RequestParam(name="limit",defaultValue="0")Integer limit
+			@RequestParam(name="start",defaultValue="1")Integer start,
+			@RequestParam(name="limit",defaultValue="15")Integer limit
 			) {	
 		int count = business.count(queryParam);
 		

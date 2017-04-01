@@ -29,12 +29,21 @@
 		DELETE FROM T_COMMODITY WHERE ID=#{id}
 	</update>
 	
-	<select id="select" parameterType="java.util.HashMap"
+	<select id="select" 
 		resultMap="queryResultMap">
 		SELECT ID,NAME,UNIT_PRICE,REMARK
 		FROM T_COMMODITY
 		<where>
-			<if test="name !=null and name != '' ">NAME like(% #{name,jdbcType=VARCHAR} )</if>
+			<if test="queryParam !=null and queryParam != '' ">NAME like(% #{queryParam,jdbcType=VARCHAR} )</if>
+		</where>
+		limit #{start,jdbcType=INTEGER} , #{limit,jdbcType=INTEGER};
+	</select>
+	
+	<select id="count" resultType="java.lang.Integer">
+		SELECT count(*)
+		FROM T_COMMODITY
+		<where>
+			<if test="queryParam !=null and queryParam != '' ">NAME like(% #{queryParam,jdbcType=VARCHAR} )</if>
 		</where>
 	</select>
 </mapper>
